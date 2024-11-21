@@ -1,0 +1,58 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	"files.exclude": {
+		"out": false, // set this to true to hide the "out" folder with the compiled JS files
+		"dist": false // set this to true to hide the "dist" folder with the compiled JS files
+	},
+	"search.exclude": {
+		"out": true, // set this to false to include "out" folder in search results
+		"dist": true // set this to false to include "dist" folder in search results
+	},
+	// Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+	"typescript.tsc.autoDetect": "off",
+	"editor.tokenColorCustomizations": {
+  "textMateRules": [
+    {
+      "scope": "entity.name.key.surveyjs",
+      "settings": {
+        "foreground": "#FF4500" // OrangeRed color for keys
+      }
+    },
+    {
+      "scope": [
+        "meta.value.surveyjs",
+        "meta.array.surveyjs",
+        "meta.object.surveyjs",
+        "meta.function.surveyjs",
+        "meta.value.number.surveyjs"
+      ],
+      "settings": {
+        "foreground": "#1E90FF" // DodgerBlue color for values
+      }
+    },
+    {
+      "scope": [
+        "string.quoted.double.surveyjs",
+        "string.quoted.single.surveyjs",
+        "string.quoted.template.surveyjs"
+      ],
+      "settings": {
+        "foreground": "#32CD32" // LimeGreen color for strings
+      }
+    },
+    {
+      "scope": "constant.language.surveyjs",
+      "settings": {
+        "foreground": "#D2691E" // Chocolate color for constants like true, false
+      }
+    },
+    {
+      "scope": "entity.name.function.surveyjs",
+      "settings": {
+        "foreground": "#8A2BE2" // BlueViolet color for function names
+      }
+    }
+  ]
+}
+
+}

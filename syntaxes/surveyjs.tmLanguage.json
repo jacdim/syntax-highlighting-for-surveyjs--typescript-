@@ -1,0 +1,172 @@
+{
+    "scopeName": "surveyjs.injection",
+    "injectionSelector": "L:source.ts -comment -string, L:source.tsx -comment -string",
+    "patterns": [
+      {
+        "include": "#keyValuePairs"
+      }
+    ],
+    "repository": {
+      "keyValuePairs": {
+        "patterns": [
+          {
+            "name": "meta.object-literal.key-value.surveyjs",
+            "match": "(\"[^\"]*\"|'[^']*'|`[^`]*`|\\b[a-zA-Z_$][\\w$]*\\b)\\s*:",
+            "captures": {
+              "1": {
+                "name": "entity.name.key.surveyjs"
+              }
+            }
+          },
+          {
+            "name": "meta.object-literal.key-value.surveyjs",
+            "begin": "(\"[^\"]*\"|'[^']*'|`[^`]*`|\\b[a-zA-Z_$][\\w$]*\\b)\\s*:",
+            "beginCaptures": {
+              "1": {
+                "name": "entity.name.key.surveyjs"
+              },
+              "0": {
+                "name": "punctuation.separator.key-value.surveyjs"
+              }
+            },
+            "end": "(?=,|\\}|\\n)",
+            "patterns": [
+              {
+                "include": "#values"
+              }
+            ]
+          }
+        ]
+      },
+      "values": {
+        "patterns": [
+          {
+            "name": "meta.value.surveyjs",
+            "match": "(true|false|null|undefined)\\b",
+            "captures": {
+              "0": {
+                "name": "constant.language.surveyjs"
+              }
+            }
+          },
+          {
+            "name": "meta.value.number.surveyjs",
+            "match": "\\b\\d+(\\.\\d+)?\\b"
+          },
+          {
+            "include": "#strings"
+          },
+          {
+            "include": "#arrays"
+          },
+          {
+            "include": "#objects"
+          },
+          {
+            "include": "#functions"
+          },
+          {
+            "include": "#others"
+          }
+        ]
+      },
+      "strings": {
+        "patterns": [
+          {
+            "name": "string.quoted.double.surveyjs",
+            "match": "\"(?:\\\\.|[^\"\\\\])*\""
+          },
+          {
+            "name": "string.quoted.single.surveyjs",
+            "match": "'(?:\\\\.|[^'\\\\])*'"
+          },
+          {
+            "name": "string.quoted.template.surveyjs",
+            "begin": "`",
+            "end": "`",
+            "patterns": [
+              {
+                "name": "constant.character.escape.surveyjs",
+                "match": "\\\\."
+              },
+              {
+                "name": "interpolation.surveyjs",
+                "begin": "\\${",
+                "end": "}",
+                "patterns": [
+                  {
+                    "include": "source.ts"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "arrays": {
+        "patterns": [
+          {
+            "name": "meta.array.surveyjs",
+            "begin": "\\[",
+            "end": "\\]",
+            "patterns": [
+              {
+                "include": "#values"
+              }
+            ]
+          }
+        ]
+      },
+      "objects": {
+        "patterns": [
+          {
+            "name": "meta.object.surveyjs",
+            "begin": "\\{",
+            "end": "\\}",
+            "patterns": [
+              {
+                "include": "#keyValuePairs"
+              }
+            ]
+          }
+        ]
+      },
+      "functions": {
+        "patterns": [
+          {
+            "name": "meta.function.surveyjs",
+            "begin": "\\bfunction\\b\\s*(\\w+)?\\s*\\(",
+            "end": "\\}",
+            "beginCaptures": {
+              "1": {
+                "name": "entity.name.function.surveyjs"
+              }
+            },
+            "patterns": [
+              {
+                "include": "source.ts"
+              }
+            ]
+          },
+          {
+            "name": "meta.arrow-function.surveyjs",
+            "begin": "\\(?[^\\)]*\\)?\\s*=>",
+            "end": "(?=,|\\}|\\n)",
+            "patterns": [
+              {
+                "include": "source.ts"
+              }
+            ]
+          }
+        ]
+      },
+      "others": {
+        "patterns": [
+          {
+            "include": "source.ts"
+          }
+        ]
+      }
+    }
+  }
+  
